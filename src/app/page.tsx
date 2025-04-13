@@ -1,6 +1,6 @@
 import { Col, Container, Image, Row } from 'react-bootstrap';
 
-/** The Home page. */
+/** The Home page. Before logging in */
 const Home = () => (
   <main>
     <Container id="landing-page" fluid className="py-3">
