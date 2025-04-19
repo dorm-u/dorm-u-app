@@ -1,12 +1,11 @@
 :root {
-  --nat-navbar-bg: linear-gradient(to bottom, #5a9267, #1e3c2f); /* background gradient */
+  --nat-navbar-bg: linear-gradient(to bottom, #5a9267, #1e3c2f);
   --nat-navbar-bg-color: #1e3c2f;
   --nat-navbar-bg-rgb: 30, 60, 47;
   --nat-navbar-text-color: #024731; 
   --nat-navbar-highlight-text: #b1f1c0;
 }
 
-/* Body */
 html,
 body {
   height: 100%;
@@ -17,6 +16,7 @@ body {
   --bs-dark: var(--nat-navbar-bg-color);
   --bs-dark-rgb: var(--nat-navbar-bg-rgb);
 }
+
 body .navbar {
   background: ivory !important;
   color: var(--nat-navbar-text-color);
@@ -27,25 +27,28 @@ body .navbar {
   --bs-navbar-color: var(--nat-navbar-text-color);
   --bs-navbar-hover-color: var(--nat-navbar-highlight-text);
 }
+
 body .navbar a {
   color: var(--nat-navbar-text-color);
   font-weight: 600;
   text-decoration: none;
 }
+
 body .navbar a:hover {
   color: var(--nat-navbar-highlight-text);
   text-decoration: underline;
 }
+
 body h5 {
   font-weight: bold !important;
   color: #b1f1c0 !important;
 }
+
 body h1 {
   font-weight: bold !important;
   color: #5a9267 !important;
 }
 
-/* Hero Section */
 .hero {
   background: url(/dormu-bg.png) center/cover no-repeat;
   min-height: 60vh;
@@ -56,10 +59,11 @@ body h1 {
   color: #b1f1c0;
   padding: 4rem 1rem;
 }
+
 .hero h2 {
   font-weight: bold;
-/* Hero Animation */
 }
+
 .hero-pulse {
   animation: pulse 2.5s ease-in-out infinite;
 }
@@ -73,7 +77,6 @@ body h1 {
   }
 }
 
-/* Footer */
 footer {
   background: ivory !important;
   color: var(--nat-navbar-text-color);
@@ -81,10 +84,12 @@ footer {
   padding: 1rem;
   text-align: center;
 }
+
 footer a {
   color: var(--nat-navbar-text-color);
   text-decoration: none;
 }
+
 footer a:hover {
   color: var(--nat-navbar-highlight-text);
   text-decoration: underline;
@@ -96,24 +101,30 @@ footer a:hover {
   display: flex;
   flex-direction: column;
 }
+
 .page-background {
   background: var(--nat-navbar-bg);
 }
+
 .bg-dark a.dropdown-item {
   color: var(--nat-navbar-bg-color);
 }
+
 .features-section {
   padding-top: 5rem;
   padding-bottom: 5rem;
 }
+
 .announcements-box {
   background-color: ivory;
   border-radius: 1rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
+
 .announcements-box p {
   color: #024731;
 }
+
 .calendar-box {
   background-color: ivory;
   border-radius: 1rem;
@@ -127,4 +138,7 @@ footer a:hover {
   margin: 0 auto;
   background-color: #b1f1c0;
   border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
