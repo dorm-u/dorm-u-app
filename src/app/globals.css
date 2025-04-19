@@ -40,6 +40,10 @@ body h5 {
   font-weight: bold !important;
   color: #b1f1c0 !important;
 }
+body h1 {
+  font-weight: bold !important;
+  color: #5a9267 !important;
+}
 
 /* Hero Section */
 .hero {
@@ -101,4 +105,26 @@ footer a:hover {
 .features-section {
   padding-top: 5rem;
   padding-bottom: 5rem;
+}
+.announcements-box {
+  background-color: ivory;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.announcements-box p {
+  color: #024731;
+}
+.calendar-box {
+  background-color: ivory;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: var(--nat-navbar-text-color);
+}
+
+.calendar-day {
+  height: 100px;
+  width: 100px;
+  margin: 0 auto;
+  background-color: #b1f1c0;
+  border-radius: 0.75rem;
 }
