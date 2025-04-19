@@ -1,14 +1,104 @@
+:root {
+  --nat-navbar-bg: linear-gradient(to bottom, #5a9267, #1e3c2f); /* background gradient */
+  --nat-navbar-bg-color: #1e3c2f;
+  --nat-navbar-bg-rgb: 30, 60, 47;
+  --nat-navbar-text-color: #024731; 
+  --nat-navbar-highlight-text: #b1f1c0;
+}
+
+/* Body */
 html,
 body {
-  --bs-light-rgb: 236, 236, 236;
-  box-sizing: border-box;
   height: 100%;
   padding: 0;
   margin: 0;
+  background: var(--nat-navbar-bg);
+  color: ivory !important;
+  --bs-dark: var(--nat-navbar-bg-color);
+  --bs-dark-rgb: var(--nat-navbar-bg-rgb);
 }
+body .navbar {
+  background: ivory !important;
+  color: var(--nat-navbar-text-color);
+  border-bottom: 1px solid #ccc;
+  --bs-navbar-active-color: var(--nat-navbar-highlight-text);
+  --bs-navbar-brand-color: var(--nat-navbar-text-color);
+  --bs-navbar-brand-hover-color: var(--nat-navbar-highlight-text);
+  --bs-navbar-color: var(--nat-navbar-text-color);
+  --bs-navbar-hover-color: var(--nat-navbar-highlight-text);
+}
+body .navbar a {
+  color: var(--nat-navbar-text-color);
+  font-weight: 600;
+  text-decoration: none;
+}
+body .navbar a:hover {
+  color: var(--nat-navbar-highlight-text);
+  text-decoration: underline;
+}
+body h5 {
+  font-weight: bold !important;
+  color: #b1f1c0 !important;
+}
+
+/* Hero Section */
+.hero {
+  background: url(/dormu-bg.png) center/cover no-repeat;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #b1f1c0;
+  padding: 4rem 1rem;
+}
+.hero h2 {
+  font-weight: bold;
+/* Hero Animation */
+}
+.hero-pulse {
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Footer */
+footer {
+  background: ivory !important;
+  color: var(--nat-navbar-text-color);
+  border-top: 1px solid #ccc;
+  padding: 1rem;
+  text-align: center;
+}
+footer a {
+  color: var(--nat-navbar-text-color);
+  text-decoration: none;
+}
+footer a:hover {
+  color: var(--nat-navbar-highlight-text);
+  text-decoration: underline;
+}
+
 .wrapper {
   box-sizing: border-box;
   min-height: 100%;
   display: flex;
   flex-direction: column;
+}
+.page-background {
+  background: var(--nat-navbar-bg);
+}
+.bg-dark a.dropdown-item {
+  color: var(--nat-navbar-bg-color);
+}
+.features-section {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
 }

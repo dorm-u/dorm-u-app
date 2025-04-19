@@ -1,17 +1,28 @@
 import { Col, Container } from 'react-bootstrap';
 
-/** The Footer appears at the bottom of every page. Rendered by the App Layout component. */
 const Footer = () => (
-  <footer className="mt-auto py-3 bg-light">
+  <footer>
     <Container>
-      <Col className="text-center">
-        Department of Information and Computer Sciences
-        <br />
-        University of Hawaii
-        <br />
-        Honolulu, HI 96822
-        <br />
-        <a href="http://ics-software-engineering.github.io/nextjs-application-template">Template Home Page</a>
+      <Col className="text-center py-3">
+        <p className="mb-0 fw-semibold" style={{ color: 'var(--nat-navbar-text-color)', fontSize: '0.9rem' }}>
+          Built by UH Mānoa students for ICS 314: Software Engineering • Spring 2025
+        </p>
+        <p className="mt-1 fw-semibold" style={{ color: 'var(--nat-navbar-text-color)', fontSize: '0.85rem' }}>
+          Information & Computer Sciences: 1680 East-West Rd, Honolulu, HI 96822
+        </p>
+        <a
+          href="https://dorm-u.github.io/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="d-block mt-2 fw-semibold"
+          style={{
+            fontSize: '0.85rem',
+            color: 'var(--nat-navbar-text-color)',
+            textDecoration: 'none',
+          }}
+        >
+          View Project Github Page ↗
+        </a>
       </Col>
     </Container>
   </footer>
