@@ -128,17 +128,25 @@ footer a:hover {
 .calendar-box {
   background-color: ivory;
   border-radius: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   color: var(--nat-navbar-text-color);
 }
 
 .calendar-day {
-  height: 100px;
-  width: 100px;
-  margin: 0 auto;
+  height: 80px;
+  width: 100%;
   background-color: #b1f1c0;
-  border-radius: 0.75rem;
+  border-radius: 0.5rem;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: start;
+  justify-content: start;
+  padding: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #024731;
+}
+
+.calendar-day.empty {
+  background-color: transparent;
+  border: none;
 }
