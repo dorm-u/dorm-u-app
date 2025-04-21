@@ -145,8 +145,30 @@ footer a:hover {
   font-size: 1rem;
   color: #024731;
 }
-
 .calendar-day.empty {
   background-color: transparent;
   border: none;
+}
+
+.profile-pic {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid #b1f1c0;
+}
+
+.bio-box {
+  background-color: ivory;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  color: #024731;
+}
+
+.post-card {
+  background-color: ivory;
+  color: #024731;
+  border-left: 10px solid #b1f1c0;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
