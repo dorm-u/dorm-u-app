@@ -14,6 +14,11 @@ export const prisma =
   globalForPrisma.prisma ??
   new PrismaClient({
     log: ['error', 'warn', 'query'], // CAM: is this the right level of logging?
+    datasources: {
+      db: {
+        url: process.env.POSTGRES_URL_NON_POOLING,
+      },
+    },
   });
 
 if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
