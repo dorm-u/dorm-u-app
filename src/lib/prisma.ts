@@ -10,7 +10,7 @@ const globalForPrisma = globalThis as unknown as { prisma: PrismaClient | undefi
 
 // eslint-disable-next-line import/prefer-default-export, operator-linebreak
 export const prisma =
-  // eslint-disable-next-line operator-linebreak
+// eslint-disable-next-line operator-linebreak
   globalForPrisma.prisma ??
   new PrismaClient({
     log: ['error', 'warn', 'query'], // CAM: is this the right level of logging?
