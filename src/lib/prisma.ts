@@ -12,7 +12,9 @@ const globalForPrisma = global as unknown as { prisma: PrismaClient };
 export const prisma =
   // eslint-disable-next-line operator-linebreak
   process.env.NODE_ENV === 'production'
-    ? new PrismaClient()
+    ? new PrismaClient({
+      log: ['query', 'info', 'warn', 'error'],
+    })
     : globalForPrisma.prisma || new PrismaClient();
 
 // Store it in global for dev environment to avoid exhausting connections
