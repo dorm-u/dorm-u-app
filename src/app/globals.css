@@ -172,6 +172,10 @@ footer a:hover {
   border-radius: 0.75rem;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
+.nav-tabs {
+  border-bottom: none;
+}
+
 .nav-tabs .nav-link {
   background-color: var(--nat-navbar-text-color);
   color: ivory;
@@ -184,6 +188,7 @@ footer a:hover {
 
 .nav-tabs .nav-link:hover {
   background-color: #056b47;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .nav-tabs .nav-link.active {
