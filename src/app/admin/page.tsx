@@ -13,7 +13,7 @@ const AdminPage = async () => {
     } | null,
   );
 
-  await prisma.$executeRaw`DISCARD ALL;`;
+  await prisma.$executeRawUnsafe('DEALLOCATE ALL;');
   const stuff = await prisma.stuff.findMany({});
   const users = await prisma.user.findMany({});
 
