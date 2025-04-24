@@ -16,6 +16,7 @@ const ListPage = async () => {
     } | null,
   );
   const owner = (session && session.user && session.user.email) || '';
+  await prisma.$executeRaw`DISCARD ALL;`;
   const stuff = await prisma.stuff.findMany({
     where: {
       owner,

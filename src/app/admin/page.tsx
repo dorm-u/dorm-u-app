@@ -12,6 +12,8 @@ const AdminPage = async () => {
       user: { email: string; id: string; randomKey: string };
     } | null,
   );
+
+  await prisma.$executeRaw`DISCARD ALL;`;
   const stuff = await prisma.stuff.findMany({});
   const users = await prisma.user.findMany({});
 
