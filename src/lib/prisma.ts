@@ -11,9 +11,11 @@ const globalForPrisma = global as unknown as { prisma: PrismaClient };
 // eslint-disable-next-line import/prefer-default-export, operator-linebreak
 export const prisma =
   // eslint-disable-next-line operator-linebreak
-  globalForPrisma.prisma ||
-  new PrismaClient({
-    log: ['error', 'warn', 'query'], // CAM: is this the right level of logging?
-  });
+  process.env.NODE_ENV === 'production'
+    ? new PrismaClient()
+    : globalForPrisma.prisma || new PrismaClient();
 
+// Store it in global for dev environment to avoid exhausting connections
 if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
+
+export default prisma;

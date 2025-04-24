@@ -16,7 +16,6 @@ const ListPage = async () => {
     } | null,
   );
   const owner = (session && session.user && session.user.email) || '';
-  await prisma.$executeRawUnsafe('DEALLOCATE ALL;');
   const stuff = await prisma.stuff.findMany({
     where: {
       owner,
