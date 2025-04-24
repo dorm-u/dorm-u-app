@@ -1,5 +1,6 @@
 'use client';
 
+import { Row, Col } from 'react-bootstrap';
 import PostCard from './PostCard';
 
 interface Post {
@@ -13,12 +14,16 @@ interface PostFeedProps {
 }
 
 const PostFeed = ({ posts }: PostFeedProps) => (
-  <div>
-    <h4>Posts</h4>
-    {posts.map((post) => (
-      <PostCard key={post.id} post={post} />
-    ))}
-  </div>
+  <>
+    <h4 className="mb-3"><strong>Posts</strong></h4>
+    <Row className="g-3">
+      {posts.map((post) => (
+        <Col md={4} key={post.id}>
+          <PostCard post={post} />
+        </Col>
+      ))}
+    </Row>
+  </>
 );
 
 export default PostFeed;

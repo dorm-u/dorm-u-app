@@ -1,14 +1,14 @@
-import { Container } from 'react-bootstrap';
+'use client';
 
-import ProfileHeader from '@/components/ProfileHeader';
+import { Container, Row, Col } from 'react-bootstrap';
+import Image from 'next/image';
 import BioSection from '@/components/BioSection';
 import PostFeed from '@/components/PostFeed';
 
-const ProfilePage = async () => {
-  // Fake user for testing
+const ProfilePage = () => {
   const user = {
     name: 'Fish Stick',
-    subtitle: 'Computer Science • 2nd Floor',
+    subtitle: 'Junior | Gateway House | 2nd Floor',
     image: '/profile-pic.png',
     bio: "Hey! I'm passionate about cat nip, chill vibes, and good treats 🍜",
     posts: [
@@ -19,11 +19,32 @@ const ProfilePage = async () => {
 
   return (
     <main>
-      <Container className="pt-4">
-        <ProfileHeader user={user} />
-        <BioSection bio={user.bio} />
-        <PostFeed posts={user.posts} />
-      </Container>
+      <section className="page-background py-5">
+        <Container>
+          <Row className="g-4">
+            {/* Profile image and basic info */}
+            <Col md={4} className="d-flex flex-column align-items-center">
+              <Image
+                src={user.image}
+                alt={user.name}
+                width={300}
+                height={300}
+                className="profile-pic mb-4"
+              />
+              <div className="bio-box p-4 mb-4 text-center">
+                <h1>{user.name}</h1>
+                <p className="mb-0">{user.subtitle}</p>
+              </div>
+            </Col>
+
+            {/* Bio and Posts using components */}
+            <Col md={8}>
+              <BioSection bio={user.bio} />
+              <PostFeed posts={user.posts} />
+            </Col>
+          </Row>
+        </Container>
+      </section>
     </main>
   );
 };
