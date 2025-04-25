@@ -1,4 +1,4 @@
-name: ci-nextjs-application-template
+name: ci-dorm-u
 on:
   push:
     branches: [main, master]
