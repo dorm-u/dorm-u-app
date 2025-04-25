@@ -34,31 +34,22 @@ const NavBar: React.FC = () => {
           <Nav.Link id="faq-nav" href="/faq" active={pathName === '/faq'} className="mx-3">
             FAQ
           </Nav.Link>
-          <Nav.Link id="contact-nav" href="/contact" active={pathName === '/contact'} className="mx-3">
-                    Contact
-          </Nav.Link>
-          <Nav.Link id="profile-nav" href="/profile" active={pathName === '/profile'} className="mx-3">
-                    Profile
-          </Nav.Link>
-          <Nav.Link id="messages-nav" href="/messages" active={pathName === '/messages'} className="mx-3">
-                    Messages
-          </Nav.Link>
-          <Nav.Link id="ra-nav" href="/ra" active={pathName === '/ra'} className="mx-3">
-                    Resident Advisor
-          </Nav.Link>
             {currentUser
               ? [
-                  <Nav.Link id="add-stuff-nav" href="/add" key="add" active={pathName === '/add'}>
-                    Add Stuff
+                  <Nav.Link id="contact-nav" href="/contact" active={pathName === '/contact'} className="mx-3">
+                  Contact
                   </Nav.Link>,
-                  <Nav.Link id="list-stuff-nav" href="/list" key="list" active={pathName === '/list'}>
-                    List Stuff
+                  <Nav.Link id="profile-nav" href="/profile" active={pathName === '/profile'} className="mx-3">
+                            Profile
+                  </Nav.Link>,
+                  <Nav.Link id="messages-nav" href="/messages" active={pathName === '/messages'} className="mx-3">
+                            Messages
                   </Nav.Link>,
                 ]
               : ''}
             {currentUser && role === 'ADMIN' ? (
-              <Nav.Link id="admin-stuff-nav" href="/admin" key="admin" active={pathName === '/admin'}>
-                Admin
+              <Nav.Link id="ra-nav" href="/ra" active={pathName === '/ra'} className="mx-3">
+              Resident Advisor
               </Nav.Link>
             ) : (
               ''
