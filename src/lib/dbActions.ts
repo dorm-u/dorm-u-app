@@ -1,6 +1,6 @@
 'use server';
 
-import { Stuff, Condition } from '@prisma/client';
+import { Stuff, Condition, Profile } from '@prisma/client';
 import { hash } from 'bcrypt';
 import { redirect } from 'next/navigation';
 import { prisma } from './prisma';
@@ -61,6 +61,36 @@ export async function deleteStuff(id: number) {
   });
   // After deleting, redirect to the list page
   redirect('/list');
+}
+
+export async function editProfile(profile: Profile) {
+  // console.log(`editStuff data: ${JSON.stringify(stuff, null, 2)}`);
+  if (profile.id === -1) {
+    await prisma.profile.create({
+      data: {
+        name: profile.name,
+        image: profile.image,
+        classes: profile.classes,
+        aboutme: profile.aboutme,
+        grade: profile.grade,
+        userId: profile.userId,
+      },
+    });
+  } else {
+    await prisma.profile.update({
+      where: { id: profile.id },
+      data: {
+        name: profile.name,
+        image: profile.image,
+        classes: profile.classes,
+        aboutme: profile.aboutme,
+        grade: profile.grade,
+        userId: profile.userId,
+      },
+    });
+  }
+  // After updating, redirect to the Profile page
+  redirect('/profile');
 }
 
 /**

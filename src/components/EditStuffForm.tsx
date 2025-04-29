@@ -9,7 +9,7 @@ import { EditStuffSchema } from '@/lib/validationSchemas';
 import { editStuff } from '@/lib/dbActions';
 
 const onSubmit = async (data: Stuff) => {
-  // console.log(`onSubmit data: ${JSON.stringify(data, null, 2)}`);
+  console.log(`onSubmit data: ${JSON.stringify(data, null, 2)}`);
   await editStuff(data);
   swal('Success', 'Your item has been updated', 'success', {
     timer: 2000,
