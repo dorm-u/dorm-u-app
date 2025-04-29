@@ -10,10 +10,8 @@ const AdminPage = async () => {
   adminProtectedPage(
     session as {
       user: { email: string; id: string; randomKey: string };
-      expires: string;
     } | null,
   );
-
   const stuff = await prisma.stuff.findMany({});
   const users = await prisma.user.findMany({});
 
