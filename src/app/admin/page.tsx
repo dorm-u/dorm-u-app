@@ -10,6 +10,7 @@ const AdminPage = async () => {
   adminProtectedPage(
     session as {
       user: { email: string; id: string; randomKey: string };
+      expires: string;
     } | null,
   );
 

@@ -10,7 +10,6 @@ import authOptions from '@/lib/authOptions';
 import { use } from 'react';
 
 const ProfilePage = () => {
-
   const user = {
     name: 'Fish Stick',
     subtitle: 'Junior | Gateway House | 2nd Floor',
