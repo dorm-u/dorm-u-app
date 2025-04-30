@@ -1,16 +1,11 @@
 'use client';
 
-import { getServerSession } from 'next-auth';
 import { Container, Row, Col } from 'react-bootstrap';
 import Image from 'next/image';
 import BioSection from '@/components/BioSection';
-import { loggedInProtectedPage } from '@/lib/page-protection';
 import PostFeed from '@/components/PostFeed';
-import authOptions from '@/lib/authOptions';
-import { use } from 'react';
 
 const ProfilePage = () => {
-
   const user = {
     name: 'Fish Stick',
     subtitle: 'Junior | Gateway House | 2nd Floor',
