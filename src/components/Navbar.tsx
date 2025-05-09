@@ -29,7 +29,7 @@ const NavBar: React.FC = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto justify-content-start">
           <Nav.Link id="calendar-nav" href="/calendar" active={pathName === '/calendar'} className="mx-3">
-                    Calendar
+            Calendar
           </Nav.Link>
           <Nav.Link id="faq-nav" href="/faq" active={pathName === '/faq'} className="mx-3">
             FAQ

@@ -9,6 +9,7 @@ import { EditProfileSchema } from '@/lib/validationSchemas';
 import { editProfile } from '@/lib/dbActions';
 
 const onSubmit = async (data: Profile) => {
+  console.log('Submit clicked!');
   console.log(`onSubmit data: ${JSON.stringify(data, null, 2)}`);
   await editProfile(data);
   swal('Success', 'Your item has been updated', 'success', {

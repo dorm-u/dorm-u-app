@@ -3,7 +3,6 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { prisma } from '@/lib/prisma';
 import Image from 'next/image';
 import BioSection from '@/components/BioSection';
-import { loggedInProtectedPage } from '@/lib/page-protection';
 import PostFeed from '@/components/PostFeed';
 import authOptions from '@/lib/authOptions';
 

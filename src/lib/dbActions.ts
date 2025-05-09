@@ -134,8 +134,6 @@ export async function editProfile(profile: Profile) {
       },
     });
   }
-  // After updating, redirect to the Profile page
-  redirect('/profile');
 }
 
 /**

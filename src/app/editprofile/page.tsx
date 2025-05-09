@@ -12,6 +12,7 @@ export default async function EditProfilePage() {
   loggedInProtectedPage(
     session as {
       user: { email: string; id: string; randomKey: string };
+      expires: string;
       // eslint-disable-next-line @typescript-eslint/comma-dangle
     } | null,
   );
