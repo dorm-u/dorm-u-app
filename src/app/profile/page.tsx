@@ -1,24 +1,34 @@
-'use client';
-
 import { getServerSession } from 'next-auth';
 import { Container, Row, Col } from 'react-bootstrap';
+import { prisma } from '@/lib/prisma';
 import Image from 'next/image';
 import BioSection from '@/components/BioSection';
 import { loggedInProtectedPage } from '@/lib/page-protection';
 import PostFeed from '@/components/PostFeed';
 import authOptions from '@/lib/authOptions';
-import { use } from 'react';
 
-const ProfilePage = () => {
+const ProfilePage = async () => {
+  const session = await getServerSession(authOptions);
+  loggedInProtectedPage(
+    session as {
+      user: { email: string; id: string; randomKey: string };
+      // eslint-disable-next-line @typescript-eslint/comma-dangle
+    } | null,
+  );
+  const owner = (session && session.user && session.user.email) || '';
+  const profile = await prisma.profile.findMany({
+    where: {
+      owner,
+    },
+  });
 
   const user = {
-    name: 'Fish Stick',
-    subtitle: 'Junior | Gateway House | 2nd Floor',
+    name: 'Enter Your Name',
+    subtitle: 'Your Grade | Gateway House | 2nd Floor',
     image: '/profile-pic.png',
-    bio: "Hey! I'm passionate about cat nip, chill vibes, and good treats 🍜",
+    bio: 'Enter Your Wonderful Bio Here!',
     posts: [
-      { id: 1, content: 'Just got a 3D printer! Printing dorm decorations now 😎', date: 'April 10, 2025' },
-      { id: 2, content: 'Movie night on our floor tonight! Bring snacks 🍿', date: 'April 8, 2025' },
+      { id: 1, content: 'Your posts will show here!', date: 'January 1, 2025' },
     ],
   };
 
@@ -30,21 +40,21 @@ const ProfilePage = () => {
             {/* Profile image and basic info */}
             <Col md={4} className="d-flex flex-column align-items-center">
               <Image
-                src={user.image}
-                alt={user.name}
+                src={profile[0]?.image || user.image}
+                alt={profile[0]?.name || user.name}
                 width={300}
                 height={300}
                 className="profile-pic mb-4"
               />
               <div className="bio-box p-4 mb-4 text-center">
-                <h1>{user.name}</h1>
-                <p className="mb-0">{user.subtitle}</p>
+                <h1>{profile[0]?.name || user.name}</h1>
+                <p className="mb-0">{profile[0]?.grade || user.subtitle}</p>
               </div>
             </Col>
 
             {/* Bio and Posts using components */}
             <Col md={8}>
-              <BioSection bio={user.bio} />
+              <BioSection bio={profile[0]?.aboutme || user.bio} />
               <PostFeed posts={user.posts} />
             </Col>
           </Row>
@@ -52,13 +62,9 @@ const ProfilePage = () => {
           {/* Edit Profile Button */}
           <Row className="mt-4">
             <Col className="d-flex justify-content-center">
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={() => window.location.href = '/editprofile'}
-              >
+              <a href="/editprofile" className="btn btn-primary">
                 Edit Profile
-              </button>
+              </a>
             </Col>
           </Row>
         </Container>

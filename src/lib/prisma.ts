@@ -16,7 +16,7 @@ export const prisma =
     log: ['error', 'warn', 'query'], // CAM: is this the right level of logging?
     datasources: {
       db: {
-        url: process.env.POSTGRES_URL_NON_POOLING,
+        url: process.env.DATABASE_URL,
       },
     },
   });

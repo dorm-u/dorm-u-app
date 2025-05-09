@@ -1,6 +1,6 @@
 'use server';
 
-import { Stuff, Condition, Profile } from '@prisma/client';
+import { Stuff, Condition, Profile, Event } from '@prisma/client';
 import { hash } from 'bcrypt';
 import { redirect } from 'next/navigation';
 import { prisma } from './prisma';
@@ -63,6 +63,51 @@ export async function deleteStuff(id: number) {
   redirect('/list');
 }
 
+export async function addEvent(event: { name: string; description: string; location: string; month: string; day: number; year: number; host: string }) {
+  // console.log(`addStuff data: ${JSON.stringify(stuff, null, 2)}`);
+  await prisma.event.create({
+    data: {
+      name: event.name,
+      description: event.description,
+      location: event.location,
+      month: event.month,
+      day: event.day,
+      year: event.year,
+      host: event.host,
+    },
+  });
+  // After adding, redirect to the events page
+  redirect('/events');
+}
+
+export async function editEvent(event: Event) {
+  // console.log(`addStuff data: ${JSON.stringify(stuff, null, 2)}`);
+  await prisma.event.update({
+    where: { id: event.id },
+    data: {
+      name: event.name,
+      description: event.description,
+      location: event.location,
+      month: event.month,
+      day: event.day,
+      year: event.year,
+      host: event.host,
+    },
+  });
+  // After adding, redirect to the list page
+  redirect('/list');
+}
+
+export async function deleteEvent(id: number) {
+  // console.log(`deleteStuff id: ${id}`);
+  await prisma.event.delete({
+    where: { id },
+  });
+  // After deleting, redirect to the list page
+  redirect('/list');
+}
+
+/* Edits the profile for a user (or creates one if not made) */
 export async function editProfile(profile: Profile) {
   // console.log(`editStuff data: ${JSON.stringify(stuff, null, 2)}`);
   if (profile.id === -1) {
@@ -73,7 +118,7 @@ export async function editProfile(profile: Profile) {
         classes: profile.classes,
         aboutme: profile.aboutme,
         grade: profile.grade,
-        userId: profile.userId,
+        owner: profile.owner,
       },
     });
   } else {
@@ -85,7 +130,7 @@ export async function editProfile(profile: Profile) {
         classes: profile.classes,
         aboutme: profile.aboutme,
         grade: profile.grade,
-        userId: profile.userId,
+        owner: profile.owner,
       },
     });
   }

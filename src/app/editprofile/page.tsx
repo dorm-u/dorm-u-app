@@ -6,7 +6,7 @@ import { loggedInProtectedPage } from '@/lib/page-protection';
 import { prisma } from '@/lib/prisma';
 import EditProfileForm from '@/components/EditProfileForm';
 
-export default async function EditProfilePage({ params }: { params: { id: string | string[] } }) {
+export default async function EditProfilePage() {
   // Protect the page, only logged in users can access it.
   const session = await getServerSession(authOptions);
   loggedInProtectedPage(
@@ -15,11 +15,17 @@ export default async function EditProfilePage({ params }: { params: { id: string
       // eslint-disable-next-line @typescript-eslint/comma-dangle
     } | null,
   );
-  const id = Number(Array.isArray(params?.id) ? params?.id[0] : params?.id);  
+
+  const owner = session?.user?.email || '';
 
   // If no profile exists, create one with empty values
-  let profile: Profile | null = null;
-  if (!id) {
+  let profiles = await prisma.profile.findMany({
+    where: { owner },
+  });
+
+  let profile = profiles[0] || null;
+  
+  if (!profile) {
     profile = {
       id: -1,
       name: '',
@@ -27,17 +33,9 @@ export default async function EditProfilePage({ params }: { params: { id: string
       classes: '',
       aboutme: '',
       grade: 'freshman',
-      userId: Number(session.user.id),
+      owner: session?.user?.email || '',
     };
-  } else {
-    profile = await prisma.profile.findUnique({
-      where: { id },
-    });
-  }
-
-  if (!profile) {
-    return notFound();
-  }
+  } 
 
   return (
     <main>

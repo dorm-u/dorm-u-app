@@ -94,7 +94,7 @@ const EditProfileForm = ({ profile }: { profile: Profile }) => {
                   />
                   <div className="invalid-feedback">{errors.aboutme?.message}</div>
                 </Form.Group>
-                <input type="hidden" {...register('userId')} value={profile.userId} />
+                <input type="hidden" {...register('owner')} value={profile.owner} />
                 <Form.Group className="form-group">
                   <Row className="pt-3">
                     <Col>

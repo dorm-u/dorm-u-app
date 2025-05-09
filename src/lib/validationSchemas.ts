@@ -22,5 +22,27 @@ export const EditProfileSchema = Yup.object({
   classes: Yup.string().required(),
   aboutme: Yup.string().required(),
   grade: Yup.string().oneOf(['freshman', 'sophomore', 'junior', 'senior']).required(),
-  userId: Yup.number().required(),
+  owner: Yup.string().required(),
 });
+
+export const AddEventSchema = Yup.object({
+  name: Yup.string().required(),
+  description: Yup.string().required(),
+  location: Yup.string().required(),
+  day: Yup.number().required(),
+  month: Yup.string().required(),
+  year: Yup.number().positive().integer().required(),
+  host: Yup.string().required(),
+});
+
+export const EditEventSchema = Yup.object({
+  id: Yup.number().required(),
+  name: Yup.string().required(),
+  description: Yup.string().required(),
+  location: Yup.string().required(),
+  day: Yup.number().required(),
+  month: Yup.string().required(),
+  year: Yup.number().positive().integer().required(),
+  host: Yup.string().required(),
+});
+

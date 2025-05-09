@@ -1,25 +1,10 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
-  // for local development
-  // url      = env("DATABASE_URL")
-  // for Vercel
-  url       = env("POSTGRES_PRISMA_URL")
-  directUrl = env("POSTGRES_URL_NON_POOLING")
-}
-
-enum Role {
-  USER
-  ADMIN
+  url      = env("DATABASE_URL")
 }
 
 model User {
@@ -29,6 +14,12 @@ model User {
   role     Role   @default(USER)
 }
 
+model Resident {
+  owner String @unique
+  Room  Int
+  Floor Int
+}
+
 model Profile {
   id      Int    @id @default(autoincrement())
   name    String
@@ -36,7 +27,49 @@ model Profile {
   classes String
   aboutme String
   grade   Grade
-  userId  Int
+  owner   String
+}
+
+model Post {
+  id         Int       @id @default(autoincrement())
+  content    String
+  owner      String
+  chatID     Int
+  chatRoomId Int?
+  Chatroom   Chatroom? @relation(fields: [chatRoomId], references: [id])
+}
+
+model Chatroom {
+  id      Int      @id  @default(autoincrement())
+  owner   String
+  name    String
+  members String[]
+  type    String
+  posts   Post[]
+}
+
+model Event {
+  id    Int @id @default(autoincrement())
+  name  String
+  description String
+  location String
+  month String
+  day   Int
+  year  Int
+  host  String
+}
+
+model Stuff {
+  id        Int       @id @default(autoincrement())
+  name      String
+  quantity  Int
+  condition Condition @default(good)
+  owner     String
+}
+
+enum Role {
+  USER
+  ADMIN
 }
 
 enum Grade {
@@ -51,12 +84,4 @@ enum Condition {
   good
   fair
   poor
-}
-
-model Stuff {
-  id        Int       @id @default(autoincrement())
-  name      String
-  quantity  Int
-  condition Condition @default(good)
-  owner     String
 }

@@ -1,14 +1,33 @@
 'use client';
 
+import { prisma } from '@/lib/prisma';
 import { useEffect, useState } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row, ListGroup } from 'react-bootstrap';
 
 const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 const Calendar = () => {
   const [thisWeekDates, setThisWeekDates] = useState<Date[]>([]);
-  const [aprilWeeks, setAprilWeeks] = useState<Date[][]>([]);
+  const [mayWeeks, setMayWeeks] = useState<Date[][]>([]);
+  const [events, setEvents] = useState<{ id: string; name: string; date: string }[]>([]);
 
+  useEffect(() => {
+    let events = null;
+    const fetchEvents = async () => {
+      try {
+        events = await prisma.event.findMany({
+          where: {
+            month: new Date().toLocaleString('en-US', { month: 'long' }),
+            year: new Date().getFullYear(),
+          },
+        });
+      } catch (error) {
+        console.error('Error fetching events:', error);
+      }
+    };
+
+    fetchEvents();
+  }, []);
   useEffect(() => {
     // This Week
     const today = new Date();
@@ -23,24 +42,24 @@ const Calendar = () => {
     setThisWeekDates(weekDates);
 
     // April 2025
-    const daysInApril = 30;
-    const aprilDates = Array.from({ length: daysInApril }, (_, i) => new Date(2025, 3, i + 1));
+    const daysInMay = 30;
+    const mayDates = Array.from({ length: daysInMay }, (_, i) => new Date(2025, 4, i + 1));
 
     // Group into weeks
     const weeks: Date[][] = [];
     let week: Date[] = new Array(7).fill(null);
 
-    aprilDates.forEach((date) => {
+    mayDates.forEach((date) => {
       const day = date.getDay();
       week[day] = date;
 
-      if (day === 6 || date.getDate() === daysInApril) {
+      if (day === 6 || date.getDate() === daysInMay) {
         weeks.push(week);
         week = new Array(7).fill(null);
       }
     });
 
-    setAprilWeeks(weeks);
+    setMayWeeks(weeks);
   }, []);
 
   return (
@@ -62,13 +81,34 @@ const Calendar = () => {
           <Row className="justify-content-center mb-4">
             <Col xs={12} md={10}>
               <div className="calendar-box p-4 mb-4">
-                <h1 className="mb-4">This Week</h1>
+                <h1 className="mb-4">
+                  This Week
+                  <button
+                    type="button"
+                    className="btn btn-primary float-end"
+                    onClick={() => window.location.href = '/events'}
+                  >
+                    See All Events
+                  </button>
+                </h1>
+
                 <Row className="text-center">
                   {daysOfWeek.map((day, i) => (
                     <Col key={`this-week-${day}`}>
                       <strong>{day}</strong>
-                      <div className="calendar-day mt-2">
+                      <div className="calendar-day mt-2" style={{ overflow: 'auto' }}>
                         {thisWeekDates[i] ? thisWeekDates[i].getDate() : ''}
+                        <br />
+                        <ul>
+                            {events
+                            .filter(event => {
+                              const eventDate = new Date(event.date);
+                              return eventDate.toDateString() === thisWeekDates[i]?.toDateString();
+                            })
+                            .map(event => (
+                              <li key={event.id}>{event.name}</li>
+                            ))}
+                        </ul>
                       </div>
                     </Col>
                   ))}
@@ -77,12 +117,12 @@ const Calendar = () => {
             </Col>
           </Row>
 
-          {/* April 2025 */}
+          {/* May 2025 */}
           <Row className="justify-content-center">
             <Col xs={12} md={10}>
               <div className="calendar-box p-4">
-                <h1 className="mb-4">April 2025</h1>
-                {aprilWeeks.map((week) => (
+                <h1 className="mb-4">May 2025</h1>
+                {mayWeeks.map((week) => (
                   <Row className="text-center pt-3" key={week.map((d) => d?.getDate() || '').join('-')}>
                     {daysOfWeek.map((day, i) => (
                       <Col key={week[i]?.toDateString() || `empty-${day}`}>

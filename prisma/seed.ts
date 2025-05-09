@@ -36,6 +36,20 @@ async function main() {
       },
     });
   }
+  console.log('Initializing main chatroom');
+  // eslint-disable-next-line no-await-in-loop
+  await prisma.chatroom.upsert({
+    where: { id: 1 },
+    update: {},
+    create: {
+      id: 1,
+      name: 'Floor 1',
+      members: ['admin@foo.com'],
+      type: 'floor',
+      posts: {},
+      owner: 'admin@foo.com',
+    },
+  });
 }
 main()
   .then(() => prisma.$disconnect())

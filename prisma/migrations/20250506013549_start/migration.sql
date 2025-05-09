@@ -2,6 +2,9 @@
 CREATE TYPE "Role" AS ENUM ('USER', 'ADMIN');
 
 -- CreateEnum
+CREATE TYPE "Grade" AS ENUM ('freshman', 'sophomore', 'junior', 'senior');
+
+-- CreateEnum
 CREATE TYPE "Condition" AS ENUM ('excellent', 'good', 'fair', 'poor');
 
 -- CreateTable
@@ -12,6 +15,19 @@ CREATE TABLE "User" (
     "role" "Role" NOT NULL DEFAULT 'USER',
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Profile" (
+    "id" SERIAL NOT NULL,
+    "name" TEXT NOT NULL,
+    "image" TEXT NOT NULL,
+    "classes" TEXT NOT NULL,
+    "aboutme" TEXT NOT NULL,
+    "grade" "Grade" NOT NULL,
+    "userId" INTEGER NOT NULL,
+
+    CONSTRAINT "Profile_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
