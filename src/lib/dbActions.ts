@@ -64,33 +64,39 @@ export async function deleteStuff(id: number) {
 }
 
 export async function editProfile(profile: Profile) {
-  // console.log(`editStuff data: ${JSON.stringify(stuff, null, 2)}`);
-  if (profile.id === -1) {
-    await prisma.profile.create({
-      data: {
-        name: profile.name,
-        image: profile.image,
-        classes: profile.classes,
-        aboutme: profile.aboutme,
-        grade: profile.grade,
-        userId: profile.userId,
-      },
-    });
-  } else {
-    await prisma.profile.update({
-      where: { id: profile.id },
-      data: {
-        name: profile.name,
-        image: profile.image,
-        classes: profile.classes,
-        aboutme: profile.aboutme,
-        grade: profile.grade,
-        userId: profile.userId,
-      },
-    });
+  try {
+    console.log(`editProfile data: ${JSON.stringify(profile, null, 2)}`);
+
+    if (profile.id === -1) {
+      await prisma.profile.create({
+        data: {
+          name: profile.name,
+          image: profile.image,
+          classes: profile.classes,
+          aboutme: profile.aboutme,
+          grade: profile.grade,
+          userId: profile.userId,
+        },
+      });
+    } else {
+      await prisma.profile.update({
+        where: { id: profile.id },
+        data: {
+          name: profile.name,
+          image: profile.image,
+          classes: profile.classes,
+          aboutme: profile.aboutme,
+          grade: profile.grade,
+          userId: profile.userId,
+        },
+      });
+    }
+
+    redirect('/profile');
+  } catch (error) {
+    console.error('Error in editProfile:', error);
+    throw error; // rethrow so client sees the error
   }
-  // After updating, redirect to the Profile page
-  redirect('/profile');
 }
 
 /**
