@@ -14,7 +14,7 @@ const EventItem = ({ id, name, description, location, month, day, year, host, is
     <td>{location}</td>
     <td>{host}</td>
     {isOwner && <td>
-      <Link href={`/editevent${id}`}>Edit</Link>
+      <Link href={`/editevent/${id}`}>Edit</Link>
       </td>}
   </tr>
 );

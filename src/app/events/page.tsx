@@ -65,13 +65,15 @@ const ListPage = async () => {
                 </tr>
               </thead>
               <tbody>
-                {events.map((event) => (
+                {events
+                  .sort((a, b) => a.day - b.day)
+                  .map((event) => (
                   <EventItem 
-                  key={event.id} 
-                  {...event} 
-                  isOwner={userData?.role === 'ADMIN' || userData?.email === event.host} 
+                    key={event.id} 
+                    {...event} 
+                    isOwner={userData?.role === 'ADMIN' || userData?.email === event.host} 
                   />
-                ))}
+                  ))}
               </tbody>
             </Table>
           </Col>

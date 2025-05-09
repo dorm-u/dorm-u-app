@@ -95,7 +95,7 @@ export async function editEvent(event: Event) {
     },
   });
   // After adding, redirect to the list page
-  redirect('/list');
+  redirect('/events');
 }
 
 export async function deleteEvent(id: number) {
@@ -104,7 +104,7 @@ export async function deleteEvent(id: number) {
     where: { id },
   });
   // After deleting, redirect to the list page
-  redirect('/list');
+  redirect('/events');
 }
 
 /* Edits the profile for a user (or creates one if not made) */
