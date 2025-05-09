@@ -9,13 +9,9 @@ import EditProfileForm from '@/components/EditProfileForm';
 export default async function EditProfilePage({ params }: { params: { id: string | string[] } }) {
   // Protect the page, only logged in users can access it.
   const session = await getServerSession(authOptions);
-  loggedInProtectedPage(
-    session as {
-      user: { email: string; id: string; randomKey: string };
-      // eslint-disable-next-line @typescript-eslint/comma-dangle
-    } | null,
-  );
-  const id = Number(Array.isArray(params?.id) ? params?.id[0] : params?.id);  
+  loggedInProtectedPage(session);
+  const id = Number(Array.isArray(params?.id) ? params?.id[0] : params?.id);
+  if (!session || !session.user?.id) return notFound();
 
   // If no profile exists, create one with empty values
   let profile: Profile | null = null;
