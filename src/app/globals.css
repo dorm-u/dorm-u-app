@@ -195,3 +195,32 @@ footer a:hover {
   background-color: var(--nat-navbar-highlight-text) !important;
   color: var(--nat-navbar-text-color) !important; 
 }
+
+.faq-accordion .accordion-item {
+  background-color: ivory;
+  border: none;
+  border-radius: 0;
+}
+
+.faq-accordion .accordion-item + .accordion-item {
+  border-top: 1px solid #024731; 
+}
+
+.faq-accordion .accordion-button {
+  background-color: #b1f1c0;
+  color: #024731;
+  font-weight: 600;
+  border: none;
+  box-shadow: none;
+}
+
+.faq-accordion .accordion-button:not(.collapsed) {
+  background-color: #a0e5b3;
+}
+
+.faq-accordion .accordion-body {
+  background-color: ivory;
+  color: #024731;
+  padding: 1rem 1.25rem;
+  border-top: 1px solid #ccc;
+}
