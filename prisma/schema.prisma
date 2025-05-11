@@ -51,6 +51,17 @@ enum Condition {
   poor
 }
 
+model Event {
+  id    Int @id @default(autoincrement())
+  name  String
+  description String
+  location String
+  month String
+  day   Int
+  year  Int
+  host  String
+}
+
 model Stuff {
   id        Int       @id @default(autoincrement())
   name      String
