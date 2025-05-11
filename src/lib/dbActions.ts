@@ -63,7 +63,10 @@ export async function deleteStuff(id: number) {
   redirect('/list');
 }
 
-export async function addEvent(event: { name: string; description: string; location: string; month: string; day: number; year: number; host: string }) {
+export async function addEvent(
+  event: {
+    name: string; description: string; location: string; month: string; day: number; year: number; host: string }
+) {
   // console.log(`addStuff data: ${JSON.stringify(stuff, null, 2)}`);
   await prisma.event.create({
     data: {
