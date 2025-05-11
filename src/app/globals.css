@@ -49,6 +49,11 @@ body h1 {
   color: #5a9267 !important;
 }
 
+body h2 {
+  font-weight: bold !important;
+  color:  #5a9267 !important;
+}
+
 .hero {
   background: url(/dormu-bg.png) center/cover no-repeat;
   min-height: 60vh;
@@ -223,4 +228,9 @@ footer a:hover {
   color: #024731;
   padding: 1rem 1.25rem;
   border-top: 1px solid #ccc;
+}
+
+.contact-ra-name {
+  font-weight: bold !important;
+  color: #024731 !important;
 }
