@@ -6,16 +6,18 @@ interface EventItemProps extends Event {
 }
 
 /* Renders a single row in the List Stuff table. See list/page.tsx. */
-const EventItem = ({ id, name, description, location, month, day, year, host, isOwner}:EventItemProps) => (
+const EventItem = ({ id, name, description, location, day, host, isOwner }:EventItemProps) => (
   <tr>
     <td>{day}</td>
     <td>{name}</td>
     <td>{description}</td>
     <td>{location}</td>
     <td>{host}</td>
-    {isOwner && <td>
-      <Link href={`/editevent/${id}`}>Edit</Link>
-      </td>}
+    {isOwner && (
+      <td>
+        <Link href={`/editevent/${id}`}>Edit</Link>
+      </td>
+    )}
   </tr>
 );
 
