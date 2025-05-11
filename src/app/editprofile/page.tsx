@@ -1,6 +1,4 @@
 import { getServerSession } from 'next-auth';
-import { notFound } from 'next/navigation';
-import { Profile } from '@prisma/client';
 import authOptions from '@/lib/authOptions';
 import { loggedInProtectedPage } from '@/lib/page-protection';
 import { prisma } from '@/lib/prisma';
@@ -20,12 +18,11 @@ export default async function EditProfilePage() {
   const owner = session?.user?.email || '';
 
   // If no profile exists, create one with empty values
-  let profiles = await prisma.profile.findMany({
+  const profiles = await prisma.profile.findMany({
     where: { owner },
   });
 
   let profile = profiles[0] || null;
-  
   if (!profile) {
     profile = {
       id: -1,
@@ -36,7 +33,7 @@ export default async function EditProfilePage() {
       grade: 'freshman',
       owner: session?.user?.email || '',
     };
-  } 
+  }
 
   return (
     <main>
